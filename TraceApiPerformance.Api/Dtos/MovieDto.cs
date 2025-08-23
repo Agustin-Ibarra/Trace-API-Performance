@@ -1,4 +1,4 @@
-namespace TraceApiPerformance.Api;
+namespace TraceApiPerformance.Api.Dtos;
 
 public class MovieDto
 {

@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using TraceApiPerformance.Api.Data;
+using TraceApiPerformance.Api.Dtos;
 
-namespace TraceApiPerformance.Api;
+namespace TraceApiPerformance.Api.Repository;
 
 public class MovieRespository
 {

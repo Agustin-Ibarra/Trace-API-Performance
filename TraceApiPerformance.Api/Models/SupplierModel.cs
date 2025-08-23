@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace TraceApiPerformance.Api;
+namespace TraceApiPerformance.Api.Models;
 
 public class Supplier
 {
