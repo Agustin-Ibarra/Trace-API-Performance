@@ -6,17 +6,17 @@ namespace TraceApiPerformance.Api.Controllers;
 [Route("api/[controller]")]
 public class MovieController : ControllerBase
 {
-  private readonly MovieRespository _movieRespository;
+  private readonly MovieRespository _movieRepository;
   public MovieController(MovieRespository movieRespository)
   {
-    _movieRespository = movieRespository;
+    _movieRepository = movieRespository;
   }
   [HttpGet("{offset}")]
   public async Task<ActionResult> GetMovies(int offset)
   {
     try
     {
-      var movies = await _movieRespository.GetMoviesList(offset);
+      var movies = await _movieRepository.GetMoviesList(offset);
       return Ok(movies);
     }
     catch (Exception ex)

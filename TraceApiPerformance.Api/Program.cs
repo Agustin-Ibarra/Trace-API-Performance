@@ -12,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 if (stringConnection != null)
 {
+  Console.WriteLine(stringConnection);
   builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(stringConnection));
   builder.Services.AddScoped<MovieRespository>();
 }
