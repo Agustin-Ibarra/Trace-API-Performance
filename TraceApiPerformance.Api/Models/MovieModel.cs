@@ -10,7 +10,7 @@ public class Movie
   public required string title { get; set; }
   public required string description { get; set; }
   public int clasification { get; set; }
-  [ForeignKey("classification")]
+  [ForeignKey("clasification")]
   public Classification? ClassificationFk { get; set; }
   public required string duration_time { get; set; }
   public required string poster { get; set; }

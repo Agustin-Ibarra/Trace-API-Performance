@@ -14,5 +14,6 @@ public class AppDbContext : DbContext
     modelBuilder.Entity<Movie>().ToTable("movies");
     modelBuilder.Entity<Format>().ToTable("formats");
     modelBuilder.Entity<Supplier>().ToTable("suppliers");
+    modelBuilder.Entity<Classification>().ToTable("classifications");
   }
 }

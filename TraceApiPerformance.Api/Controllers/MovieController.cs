@@ -26,11 +26,20 @@ public class MovieController : ControllerBase
     }
   }
 
-  // [HttpGet("/detail/{idMovie}")]
-  // public ActionResult GetMovieInfo(int idMovie)
-  // {
-  //   return Ok();
-  // }
+  [HttpGet("/detail/{idMovie}")]
+  public async Task<ActionResult> GetMovieInfo(int idMovie)
+  {
+    try
+    {
+      var movie = await _movieRepository.GetMovieDetaild(idMovie);
+      return Ok(movie);
+    }
+    catch (Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+      return StatusCode(503, new { errorMessage = "Ocurrio un error en la base de datos" });
+    }
+  }
 
   // [HttpPost]
   // public ActionResult CreateMovie()

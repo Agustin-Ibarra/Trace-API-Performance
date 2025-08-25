@@ -41,7 +41,16 @@ public class MovieRespository
       Poster = movie.poster,
       TitleMovie = movie.title,
       IdMovie = movie.id_movie,
-      PremierMovie = movie.premier
+      PremierMovie = movie.premier,
+      Trailer = movie.trailer,
+      ClassificationMovie = new ClassificationDto
+      {
+        TypeClassification = movie.ClassificationFk != null ? movie.ClassificationFk.type : "sin categoria"
+      },
+      FormatMovie = new FormatDto
+      {
+        TypeFormat = movie.FormatFk != null ? movie.FormatFk.type_format : "sin formato"
+      }
     })
     .FirstOrDefaultAsync() ?? throw new Exception($"No se encontro la pelicula con id: {idMovie}");
   }

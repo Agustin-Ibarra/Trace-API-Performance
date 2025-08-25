@@ -1,3 +1,5 @@
+using TraceApiPerformance.Api.Models;
+
 namespace TraceApiPerformance.Api.Dtos;
 
 public class MovieDto
@@ -18,4 +20,5 @@ public class MovieDetailDto
   public required string Poster { get; set; }
   public ClassificationDto? ClassificationMovie { get; set; }
   public FormatDto? FormatMovie { get; set; }
+  public required string Trailer { get; set; }
 }
