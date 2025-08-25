@@ -4,10 +4,10 @@ namespace TraceApiPerformance.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class MovieController : ControllerBase
+public class MoviesController : ControllerBase
 {
   private readonly MovieRespository _movieRepository;
-  public MovieController(MovieRespository movieRespository)
+  public MoviesController(MovieRespository movieRespository)
   {
     _movieRepository = movieRespository;
   }
@@ -26,7 +26,8 @@ public class MovieController : ControllerBase
     }
   }
 
-  [HttpGet("/detail/{idMovie}")]
+  [HttpGet]
+  [Route("/api/movies/detail/{idMovie}")]
   public async Task<ActionResult> GetMovieInfo(int idMovie)
   {
     try
