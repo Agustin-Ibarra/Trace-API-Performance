@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using TraceApiPerformance.Api.Models;
 using TraceApiPerformance.Api.Repository;
 namespace TraceApiPerformance.Api.Controllers;
 
@@ -42,9 +43,10 @@ public class MoviesController : ControllerBase
     }
   }
 
-  // [HttpPost]
-  // public ActionResult CreateMovie()
-  // {
-  //   return Ok();
-  // }
+  [HttpPost]
+  public async Task<ActionResult> CreateMovie(Movie movie)
+  {
+    await _movieRepository.CreateMovie(movie);
+    return Ok(movie);
+  }
 }

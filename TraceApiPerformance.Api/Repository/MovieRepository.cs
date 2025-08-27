@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using TraceApiPerformance.Api.Data;
 using TraceApiPerformance.Api.Dtos;
+using TraceApiPerformance.Api.Models;
 
 namespace TraceApiPerformance.Api.Repository;
 
@@ -55,5 +56,11 @@ public class MovieRespository
     .FirstOrDefaultAsync() ?? throw new Exception($"No se encontro la pelicula con id: {idMovie}");
   }
 
-  public void CreateMovie(){}
+  public async Task CreateMovie(Movie newMovie)
+  {
+    _appDbContext.Movies.Add(newMovie);
+    await _appDbContext.SaveChangesAsync();
+  }
+
+  public void CreateMovie() { }
 }
