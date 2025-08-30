@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TraceApiPerformance.Api.Models;
 using TraceApiPerformance.Api.Repository;
+using TraceApiPerformance.Api.Utils;
 namespace TraceApiPerformance.Api.Controllers;
 
 [ApiController]
@@ -15,9 +16,12 @@ public class MoviesController : ControllerBase
   [HttpGet("{offset}")]
   public async Task<ActionResult> GetMovies(int offset)
   {
+    double beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
     try
     {
       var movies = await _movieRepository.GetMoviesList(offset);
+      var afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
+      var diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
       return Ok(movies);
     }
     catch (Exception ex)
@@ -31,9 +35,12 @@ public class MoviesController : ControllerBase
   [Route("/api/movies/detail/{idMovie}")]
   public async Task<ActionResult> GetMovieInfo(int idMovie)
   {
+    double beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
     try
     {
       var movie = await _movieRepository.GetMovieDetaild(idMovie);
+      double afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
+      double diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
       return Ok(movie);
     }
     catch (Exception ex)
@@ -46,7 +53,18 @@ public class MoviesController : ControllerBase
   [HttpPost]
   public async Task<ActionResult> CreateMovie(Movie movie)
   {
-    await _movieRepository.CreateMovie(movie);
-    return Ok(movie);
+    var beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
+    try
+    {
+      await _movieRepository.CreateMovie(movie);
+      var afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
+      var diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
+      return Ok(movie);
+    }
+    catch(Exception ex)
+    {
+      Console.WriteLine(ex.Message);
+      return StatusCode(500, new { errorMessage = "Ocurrio un error en la base de datos" });
+    }
   }
 }
