@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TraceApiPerformance.Api.Models;
 using TraceApiPerformance.Api.Repository;
-using TraceApiPerformance.Api.Utils;
+using TraceApiPerformance.Api.Hellpers;
 namespace TraceApiPerformance.Api.Controllers;
 
 [ApiController]

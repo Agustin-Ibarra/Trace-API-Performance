@@ -1,4 +1,4 @@
-namespace TraceApiPerformance.Api.Utils;
+namespace TraceApiPerformance.Api.Hellpers;
 
 public class MemoryRAMHelpper
 {
