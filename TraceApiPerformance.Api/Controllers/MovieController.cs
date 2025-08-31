@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TraceApiPerformance.Api.Models;
 using TraceApiPerformance.Api.Repository;
 using TraceApiPerformance.Api.Hellpers;
+using System.Diagnostics;
 namespace TraceApiPerformance.Api.Controllers;
 
 [ApiController]
@@ -17,11 +18,19 @@ public class MoviesController : ControllerBase
   public async Task<ActionResult> GetMovies(int offset)
   {
     double beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
+    var process = Process.GetCurrentProcess();
+    var beforeCPU = process.TotalProcessorTime;
+    var stopWatch = Stopwatch.StartNew();
     try
     {
       var movies = await _movieRepository.GetMoviesList(offset);
       var afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
       var diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
+      var afterCPU = process.TotalProcessorTime;
+      stopWatch.Stop();
+      double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
+      double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
+      double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
       return Ok(movies);
     }
     catch (Exception ex)
@@ -35,12 +44,20 @@ public class MoviesController : ControllerBase
   [Route("/api/movies/detail/{idMovie}")]
   public async Task<ActionResult> GetMovieInfo(int idMovie)
   {
+    var process = Process.GetCurrentProcess();
+    var beforeCPU = process.TotalProcessorTime;
+    var stopWatch = Stopwatch.StartNew();
     double beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
     try
     {
       var movie = await _movieRepository.GetMovieDetaild(idMovie);
       double afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
       double diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
+      var afterCPU = process.TotalProcessorTime;
+      stopWatch.Stop();
+      double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
+      double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
+      double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
       return Ok(movie);
     }
     catch (Exception ex)
@@ -53,15 +70,23 @@ public class MoviesController : ControllerBase
   [HttpPost]
   public async Task<ActionResult> CreateMovie(Movie movie)
   {
+    var process = Process.GetCurrentProcess();
+    var beforeCPU = process.TotalProcessorTime;
+    var stopWatch = Stopwatch.StartNew();
     var beforeRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
     try
     {
       await _movieRepository.CreateMovie(movie);
       var afterRAM = MemoryRAMHelpper.GetTotalMemoryRAM();
       var diff = MemoryRAMHelpper.GetDifferenceMeasure(beforeRAM, afterRAM);
+      var afterCPU = process.TotalProcessorTime;
+      stopWatch.Stop();
+      double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
+      double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
+      double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
       return Ok(movie);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
       Console.WriteLine(ex.Message);
       return StatusCode(500, new { errorMessage = "Ocurrio un error en la base de datos" });
