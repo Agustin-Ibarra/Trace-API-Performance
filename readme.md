@@ -3,7 +3,8 @@
 Este sistema realiza consultas a una base de datos que contiene información de un basto catalogo de películas, en esta base de datos realiza las siguientes operaciones  
 - Obtener un listado con información de las películas 
 - Buscar una película por id retornando su información, 
-- Crea una nueva película 
+- Crea una nueva película
+  
 La aplicación procesa las peticiones y por cada solicitud, mide el rendimiento y recursos que require para procesarlas, obteniendo información de consumo de memoria RAM, tiempo de respuesta y porcentaje de CPU utilizado, de esta forma se puede obtener una aproximación del consumo de las peticiones.
 
 ## Tabla de contenido
