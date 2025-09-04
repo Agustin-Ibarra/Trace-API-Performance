@@ -33,7 +33,7 @@ public class MoviesController : ControllerBase
       double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
       double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
       double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
-      _logger.LogInformation("Path: /api/movies Method: GET Status: 200 CPU percent: {percentCpu:F2}% RAM: {diff:F2}MB", percentCpu, diff);
+      _logger.LogInformation("Path: /api/movies, Method: GET, Status: 200, CPU_percent: {percentCpu:F2}%, RAM: {diff:F2}MB", percentCpu, diff);
       return Ok(movies);
     }
     catch (Exception ex)
@@ -61,7 +61,7 @@ public class MoviesController : ControllerBase
       double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
       double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
       double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
-      _logger.LogInformation("Path: /api/movies/detail/{id} Method: GET Status: 200 CPU percent: {percentCpu:F2}% RAM: {diff:F2}MB",idMovie , percentCpu, diff);
+      _logger.LogInformation("Path: /api/movies/detail/{id}, Method: GET, Status: 200, CPU_percent: {percentCpu:F2}%, RAM: {diff:F2}MB",idMovie , percentCpu, diff);
       return Ok(movie);
     }
     catch (Exception ex)
@@ -88,7 +88,7 @@ public class MoviesController : ControllerBase
       double usedCpu = CpuHelper.GetUsedCpu(beforeCPU, afterCPU);
       double timeTranscurred = stopWatch.Elapsed.TotalMilliseconds;
       double percentCpu = CpuHelper.GetPercentCpu(usedCpu, timeTranscurred);
-      _logger.LogInformation("Path: /api/movies Method: POST Status: 200 CPU percent: {percentCpu:F2}% RAM: {diff:F2}MB", percentCpu, diff);
+      _logger.LogInformation("Path: /api/movies, Method: POST, Status: 200, CPU_percent: {percentCpu:F2}%, RAM: {diff:F2}MB", percentCpu, diff);
       return Ok(movie);
     }
     catch (Exception ex)

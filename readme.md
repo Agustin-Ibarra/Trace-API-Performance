@@ -24,11 +24,11 @@ La aplicación procesa las peticiones y por cada solicitud, mide el rendimiento 
 Ejemplo de salida de logs
 ```javascript
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies Method: GET, Status: 200, CPU_percent: 10.77%, RAM: 0.89MB
+      Path: /api/movies, Method: GET, Status: 200, CPU_percent: 10.77%, RAM: 0.89MB
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies/detail/1 Method: GET, Status: 200, CPU_percent: 11.10%, RAM: 1.32MB
+      Path: /api/movies/detail/1, Method: GET, Status: 200, CPU_percent: 11.10%, RAM: 1.32MB
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies Method: POST, Status: 201, CPU_percent: 6.24%, RAM: 0.23MB
+      Path: /api/movies, Method: POST, Status: 201, CPU_percent: 6.24%, RAM: 0.23MB
 ```
 
 ## BackEnd
