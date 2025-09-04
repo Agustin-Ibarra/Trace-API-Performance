@@ -1,5 +1,5 @@
 # Trace API performance
-## Descriptción de la aplicacion
+## Descriptción de la aplicación
 Este sistema realiza consultas a una base de datos que contiene información de un basto catalogo de películas, en esta base de datos realiza las siguientes operaciones  
 - Obtener un listado con información de las películas 
 - Buscar una película por id retornando su información, 
@@ -10,10 +10,10 @@ La aplicación procesa las peticiones y por cada solicitud, mide el rendimiento 
 1. [Características](#características)
 2. [BackEnd](#backend)
 3. [Base de datos](#base-de-datos)
+4. [Inicio](#inicio)
 <!-- 4. [Documentacion](#documentacion) -->
 <!-- 5. [Pruebas unitarias](#pruebas-unitarias) -->
 <!-- 6. [Monitoreo de rutas](#monitoreo-de-rutas) -->
-7. [Inicio](#inicio)
 <!-- 8. [Contenedores Docker](#contenedores-docker) -->
 
 ## Características
@@ -24,11 +24,11 @@ La aplicación procesa las peticiones y por cada solicitud, mide el rendimiento 
 Ejemplo de salida de logs
 ```javascript
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies Method: GET Status: 200 CPU percent: 10.77% RAM: 0.89MB
+      Path: /api/movies Method: GET, Status: 200, CPU_percent: 10.77%, RAM: 0.89MB
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies/detail/1 Method: GET Status: 200 CPU percent: 11.10% RAM: 1.32MB
+      Path: /api/movies/detail/1 Method: GET, Status: 200, CPU_percent: 11.10%, RAM: 1.32MB
 info: TraceApiPerformance.Api.Controllers.MoviesController[0]
-      Path: /api/movies Method: POST Status: 200 CPU percent: 6.24% RAM: 0.23MB
+      Path: /api/movies Method: POST, Status: 201, CPU_percent: 6.24%, RAM: 0.23MB
 ```
 
 ## BackEnd
